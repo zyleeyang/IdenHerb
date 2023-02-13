@@ -1,1 +1,8 @@
-#Example data was provided for trying.
+
+devtools::install_github('zyleeyang/IdenHerb')
+library(IdenHerb)
+Pre_processdata("example_data/") #example_data is a file containing Herb1 ~ Herb8
+filter_data(unfilter_data = "processed_rawdata.csv") # the processed_rawdata.csv is the result of last step
+character_ion(processed_rawdata = "processed_rawdata") #processed_rawdata is the result of last step 
+match_rate(need_match_data = 'need_match_data/') # need_match_data is a file containing Medicine.xlsx or Mix herb.xlsx
+#ALWAYS ONLY ONE FILE IN need_match_data
