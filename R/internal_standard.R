@@ -2,7 +2,7 @@ internal_standard <- function(all_data){
   library(tidyverse)
   library(readxl)
   library(writexl)
-  filesNEG = list.files(all_data, pattern = "xlsx",full.names = TRUE,)  #把所有的文件都进行读取
+  filesNEG = list.files(all_data, pattern = "xlsx",full.names = TRUE,)  
   filesNEG
   dir = grep('\\.xlsx',filesNEG,value = TRUE)
   n = length(dir)
@@ -23,9 +23,8 @@ internal_standard <- function(all_data){
 
   #write.csv(merge.data,file = './merge_weiquchong.csv',row.names = FALSE)
   all_ion <- data.frame(merge.data)
-  #上述操作是将所有的离子写入merge_weiquchong文件
   head(all_ion)
-  all_ion$Area[all_ion$Area == 'N/A'] <- 0   #将N/A值变成0
+  all_ion$Area[all_ion$Area == 'N/A'] <- 0   
   all_ion$Retention.Time[all_ion$Retention.Time == 'N/A'] <- 0
   Lvmeisu <- all_ion%>%
     filter_all(any_vars(grepl('321.00',.)))
