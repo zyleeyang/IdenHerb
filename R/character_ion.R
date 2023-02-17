@@ -8,7 +8,7 @@
 #'
 #' @examples
 character_ion <- function(processed_rawdata,rank_number = 100){
-  filesNEG_pro = list.files(processed_rawdata, pattern = "csv",full.names = TRUE,)  #把所有的文件都进行读取
+  filesNEG_pro = list.files(processed_rawdata, pattern = "csv",full.names = TRUE,)  
   dir = grep('\\.csv',filesNEG_pro,value = TRUE)
   n = length(dir)
   merge.data = read.csv(dir[1])
