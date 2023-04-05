@@ -34,6 +34,8 @@ Pre_processdata("example_data/") #example_data is a file containing Chinese pate
 #Step 3
 match_rate(need_match_data = 'need_match_data/') # need_match_data is the file containing the Result 4.
 ```
+## Contact us
+If you have any problems when you use IdenHerb. Please contact us, you can send an emial to zyleeyang@bjmu.edu.cn or zyleeyang@163.com
 
 
 
