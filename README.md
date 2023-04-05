@@ -23,6 +23,17 @@ filter_data(unfilter_data = "processed_rawdata.csv")
 character_ion(proceseed_rawdata = "processed_rawdata") #Constrction of characteristic ion groups of each herbs
 #Result 3 : herb_charcter_ion.csv
 ```
+## Chinese patent medicine match
+```
+#Step 1
+internal_standard(data_file) #data_file represents the file that the data is stored.
+#Output the retention time and m/z of all samples, for ensuring reliable data
+#Step 2
+Pre_processdata("example_data/") #example_data is a file containing Chinese patent data for identifying herbs
+#Convert data format for subsequent analysis. Result 4 : processed_rawdata.csv
+#Step 3
+match_rate(need_match_data = 'need_match_data/') # need_match_data is the file containing the Result 4.
+```
 
 
 
