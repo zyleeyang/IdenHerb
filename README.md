@@ -37,5 +37,5 @@ match_rate(need_match_data = 'need_match_data/') # need_match_data is the file c
 ## Contact us
 If you have any problems when you use IdenHerb. Please contact us, you can send an emial to zyleeyang@bjmu.edu.cn or zyleeyang@163.com
 
-
-
+## Data format
+The data format can be found in the data we store in example_data
