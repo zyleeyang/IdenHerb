@@ -7,7 +7,7 @@ Re_build_character_ion <- function(Re_character_ion,repeat_times_set = 10){
   merge.data = read.csv(dir[1])
   merge.data <- merge.data %>%
     select(Sample.Name,Area,Retention.Time,Precursor.Mass,Retention.Time,Precursor.Mass) %>%
-    mutate(mz = round(Precursor.Mass * 0.5,2),time = round(Retention.Time * 1.5),0) 
+######
   merge.data <- merge.data%>%
     select(Sample.Name,Area,mz,time,Retention.Time,Precursor.Mass)%>%
     mutate(mz_time = paste(mz,time,sep = "_"))  
