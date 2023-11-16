@@ -8,7 +8,7 @@
 #'
 #' @examples
 match_rate <- function(need_match_data,character_ion){
-  filesNEG = list.files(need_match_data, pattern = "csv",full.names = TRUE,)  #把所有的文件都进行读取
+  filesNEG = list.files(need_match_data, pattern = "csv",full.names = TRUE,) 
   filesNEG
   dir = grep('\\.csv',filesNEG,value = TRUE)
   n = length(dir)
@@ -20,21 +20,18 @@ match_rate <- function(need_match_data,character_ion){
   head(merge.data)
   all_ion <- read.csv("./result/raw_need_match_data.csv")
   head(all_ion)
-  all_ion <- select(all_ion,-X)  #这边发现了多了一列X,所以把X列进行了删除操作
+  all_ion <- select(all_ion,-X) 
   head(all_ion)
 
-  all_ion$Area[all_ion$Area == 'N/A'] <- 0  #要先去除N/A再转化
+  all_ion$Area[all_ion$Area == 'N/A'] <- 0 
   all_ion$Retention.Time[all_ion$Retention.Time == 'N/A'] <- 0
   head(all_ion)
   all_ion[,3:4] <- lapply(all_ion[,3:4],as.numeric)
   all_ion <- subset(all_ion,Area >= 10000)
-  #  colnames(merge.data)  这个问题解决了,可以先导出csv格式文件,然后再读取,从而列名就有点了
+  #  colnames(merge.data) 
   all_ion <- all_ion %>%
     select(Sample.Name,Area,Retention.Time,Precursor.Mass,Retention.Time,Precursor.Mass) %>%
-    mutate(mz = round(Precursor.Mass * 0.5,2),time = round(Retention.Time * 1.5),0)  #对保留时间和母离子进行处理
-  all_ion <- all_ion %>%
-    select(Sample.Name,Area,mz,time,Retention.Time,Precursor.Mass)%>%
-    mutate(mz_time = paste(mz,time,sep = "_"))  #生成新的列
+
   all_ion
   getwd()
 
@@ -51,13 +48,11 @@ match_rate <- function(need_match_data,character_ion){
   all_ion_yc$Retention.Time[all_ion_yc$Retention.Time == 'N/A'] <- 0
   all_ion_yc[,3:4] <- lapply(all_ion_yc[,3:4],as.numeric)
   all_ion_yc <- subset(all_ion_yc,Area >= 10000)
-  #  colnames(merge.data)  这个问题解决了,可以先导出csv格式文件,然后再读取,从而列名就有点了
-  all_ion_yc <- all_ion_yc %>%
-    select(Sample.Name,Area,Retention.Time,Precursor.Mass,Retention.Time,Precursor.Mass) %>%
-    mutate(mz = round(Precursor.Mass * 0.5,2),time = round(Retention.Time * 1.5),0)  #对保留时间和母离子进行处理
+  #  colnames(merge.data)  
+
   all_ion_yc <- all_ion_yc %>%
     select(Sample.Name,Area,mz,time,Retention.Time,Precursor.Mass)%>%
-    mutate(mz_time = paste(mz,time,sep = "_"))  #生成新的列
+    mutate(mz_time = paste(mz,time,sep = "_"))  
   head(all_ion_yc)
   processed_1 <- all_ion_yc %>%
     group_by(mz_time) %>%
@@ -101,7 +96,7 @@ match_rate <- function(need_match_data,character_ion){
     duplicate_ion <- processed_3[processed_3$mz_time %in% duplicate_name$mz_time,]
     write.csv(duplicate_ion,file = out_fileName[i],row.names = F)
   }
-  filesNEG2 = list.files("./", pattern = "csv",full.names = TRUE,)  #把所有的文件都进行读取
+  filesNEG2 = list.files("./", pattern = "csv",full.names = TRUE,)  
   filesNEG2
   dir2 = grep('\\.csv',filesNEG2,value = TRUE)
   n = length(dir2)
