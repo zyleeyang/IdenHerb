@@ -15,7 +15,7 @@ Pre_processdata <- function(rawdata_dir){
   library(tidyverse)
   library(readxl)
   library(writexl)
-  filesNEG = list.files(rawdata_dir, pattern = "xlsx",full.names = TRUE,)  #把所有的文件都进行读取
+  filesNEG = list.files(rawdata_dir, pattern = "xlsx",full.names = TRUE,)  
   filesNEG
   dir = grep('\\.xlsx',filesNEG,value = TRUE)
   n = length(dir)
