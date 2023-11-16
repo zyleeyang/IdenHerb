@@ -49,7 +49,7 @@ write.csv(final_data_NEG,"QC of NEG.csv")
 rm(list=ls())
 QC_tes_POS <- function(QC_file_POS){
 #POS
-filesPOS = list.files("POS/", pattern = "xlsx",full.names = TRUE,)  #把所有的文件都进行读取
+filesPOS = list.files("POS/", pattern = "xlsx",full.names = TRUE,)  
 filesPOS
 dir = grep('\\.xlsx',filesPOS,value = TRUE)  
 n = length(dir)
