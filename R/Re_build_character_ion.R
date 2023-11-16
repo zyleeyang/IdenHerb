@@ -5,18 +5,15 @@ Re_build_character_ion <- function(Re_character_ion,repeat_times_set = 10){
   dir = grep('\\.csv',filesNEG_pro,value = TRUE)
   n = length(dir)
   merge.data = read.csv(dir[1])
-  merge.data <- merge.data %>%
-    select(Sample.Name,Area,Retention.Time,Precursor.Mass,Retention.Time,Precursor.Mass) %>%
 ######
-  merge.data <- merge.data%>%
-    select(Sample.Name,Area,mz,time,Retention.Time,Precursor.Mass)%>%
-    mutate(mz_time = paste(mz,time,sep = "_"))  
+######
+######
   merge.data <- merge.data %>%
     group_by(mz_time) %>%
     mutate(n=n()) %>%
     filter(n==1)%>%
     select(-n)
-  merge.data <- subset(merge.data,Area >= 10000)
+######
   merge.data <- arrange(merge.data,-merge.data$Area)
   for (i in 2:n){
     new.data = read.csv(dir[i])
