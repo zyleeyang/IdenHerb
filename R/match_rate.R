@@ -44,7 +44,7 @@ match_rate <- function(need_match_data,character_ion){
   setwd("..")
   all_ion_yc = read.csv('herb_charcter_ion.csv')
   head(all_ion_yc)
-  all_ion_yc$Area[all_ion_yc$Area == 'N/A'] <- 0   #将N/A值变成0
+  all_ion_yc$Area[all_ion_yc$Area == 'N/A'] <- 0   
   all_ion_yc$Retention.Time[all_ion_yc$Retention.Time == 'N/A'] <- 0
   all_ion_yc[,3:4] <- lapply(all_ion_yc[,3:4],as.numeric)
   all_ion_yc <- subset(all_ion_yc,Area >= 10000)
