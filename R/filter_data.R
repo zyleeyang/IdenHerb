@@ -22,25 +22,20 @@ filter_data <- function(unfilter_data,threshold = 10000){
   all_ion <- all_ion[,-1]
   all_ion_Area_more_than1000 <- all_ion
 
-  head(all_ion_Area_more_than1000) #查看前几行
-  class(all_ion_Area_more_than1000) #查看数据类型
+  head(all_ion_Area_more_than1000) 
+  class(all_ion_Area_more_than1000) 
 
-  sapply(all_ion_Area_more_than1000,typeof)  #查看每一列的数据类型,发现Area和time是字符型数据
-  all_ion_Area_more_than1000[,3:4] <- lapply(all_ion_Area_more_than1000[,3:4],as.numeric) #把Area和time转化成数值型数据
+  sapply(all_ion_Area_more_than1000,typeof) 
+  all_ion_Area_more_than1000[,3:4] <- lapply(all_ion_Area_more_than1000[,3:4],as.numeric) 
   all_ion_Area_more_than1000 <- subset(all_ion_Area_more_than1000,Area >= threshold)
-  sapply(all_ion_Area_more_than1000,typeof)  #再次查看每一列的数据类型
-  processed <- all_ion_Area_more_than1000 %>%
+  sapply(all_ion_Area_more_than1000,typeof) 
     select(Sample.Name,Area,Retention.Time,Precursor.Mass,Retention.Time,Precursor.Mass) %>%
-    mutate(mz = round(Precursor.Mass * 0.5,2),time = round(Retention.Time * 1.5),0)  #对保留时间和母离子进行处理
+  ######
   processed_2 <- processed%>%
     select(Sample.Name,Area,mz,time,Retention.Time,Precursor.Mass)%>%
-    mutate(mz_time = paste(mz,time,sep = "_"))  #生成新的列
-  processed_3 <- processed_2 %>%
-    group_by(mz_time) %>%
-    mutate(n=n()) %>%
-    filter(n==1)%>%
-    select(-n)
-  #这边是查看有没有重复的情况
+    mutate(mz_time = paste(mz,time,sep = "_")) 
+
+
   head(processed_3)
   processed_3%>%
     group_by(mz_time)%>%
