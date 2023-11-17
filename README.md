@@ -1,4 +1,6 @@
 # IdenHerb
+## NOTICE
+Due to the need to protect innovation, the core code will be published after the publication of the article
 ## Description
 `IdenHerb` is an open-source, cross-platform R script to identify herbs contained in Chinese patent medicines or other complex systems.
 ## Installation instructions
